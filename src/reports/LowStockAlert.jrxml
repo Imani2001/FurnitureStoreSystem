@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="905bc747-b83b-4af3-8b2b-2734f083473d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FurnitureStore"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT 
+    p.ProductName,
+    c.CategoryName,
+    p.StockQuantity,
+    p.SupplierName,
+    CASE 
+        WHEN p.StockQuantity < 5 THEN 'CRITICAL - Reorder Now'
+        WHEN p.StockQuantity < 10 THEN 'Low - Plan Reorder'
+        ELSE 'Monitor'
+    END AS StockStatus
+FROM Product p
+JOIN Category c ON p.CategoryID = c.CategoryID
+WHERE p.StockQuantity < 20
+ORDER BY p.StockQuantity ASC]]>
+	</queryString>
+	<field name="ProductName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ProductName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="CategoryName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CategoryName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="category"/>
+	</field>
+	<field name="StockQuantity" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="StockQuantity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="SupplierName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="SupplierName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="StockStatus" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="StockStatus"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="595" height="30" forecolor="#B3231E" uuid="955cf1e7-b77f-4486-a639-06f3eb79d7a0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Low Stock Alert]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="100" height="30" uuid="1c53efe0-2e2c-4434-b1c7-9eaced02de9d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="100" height="30" uuid="1f0dae02-52c3-4c11-a9ee-f84847c09de8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="100" height="30" uuid="e075588c-600e-4815-9fcb-28f64c7639a3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="100" height="30" uuid="97d85560-f526-4bef-a07a-375d49054c7e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="100" height="30" uuid="55a9bb6d-18e8-4c09-b2f0-1b2400386d27"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="-10" y="0" width="100" height="18" uuid="8298b0df-28ac-44b1-8140-80f0a8089b47">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ab6c217-2433-4085-a4c8-e6772747ed79"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ProductName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="100" height="18" uuid="16f7f359-162b-4f86-bb32-c8e927da8bc6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5026f951-24cc-45d8-a6d5-d7a62fdedd1d"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CategoryName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="100" height="18" uuid="79259226-9fe3-4306-b17c-8b4408f47dad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="820ad7fb-508b-46da-8a71-4a62e4fb302c"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StockQuantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="18" uuid="b8ac7a5a-a54a-4061-84f8-56035975ebca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4e7953b0-e890-4368-8b4e-739174f18e62"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SupplierName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="100" height="18" forecolor="#ED1915" uuid="6de988fa-10db-4571-a867-0d5c10252419">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e887bb26-b612-4e7a-af5b-70735320d002"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{StockStatus}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

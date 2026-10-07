@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_3" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be2ec026-5ca3-4fce-a0d9-48ff46b592e6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FurnitureStore"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT 
+    DATE_FORMAT(so.OrderDate, '%Y-%m') AS Month,
+    COUNT(so.OrderID) AS OrderCount,
+    SUM(so.TotalAmount) AS TotalRevenue,
+    AVG(so.TotalAmount) AS AvgOrderValue
+FROM SalesOrder so
+WHERE so.Status = 'Completed'
+GROUP BY DATE_FORMAT(so.OrderDate, '%Y-%m')
+ORDER BY Month DESC]]>
+	</queryString>
+	<field name="Month" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Month"/>
+	</field>
+	<field name="OrderCount" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="OrderCount"/>
+	</field>
+	<field name="TotalRevenue" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TotalRevenue"/>
+	</field>
+	<field name="AvgOrderValue" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="AvgOrderValue"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="595" height="30" uuid="372a511b-cd02-4545-b73e-a0eee8cb7550"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monthly Revenue Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="6c653ff1-3779-4cfd-9d19-55ed014bf121"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="100" height="30" uuid="70b4c3e6-ac06-49a3-a21c-a6c8090982d1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orders]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="100" height="30" uuid="bbdb1a04-81dd-49c4-b2dd-834031df6f9d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Revenue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="100" height="30" uuid="5fcfd017-f793-4492-95e4-534641090b4b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Avg Order Value]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="12" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="18" uuid="fbe21103-88b6-4162-aa2e-0ae4849184e0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="adeee28e-6724-491c-8922-7f2d3aaf1d96"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Month}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="100" height="18" uuid="cf3d9368-c5bd-4e9a-b7fb-4dfc7dd71a2a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e22e5f07-d255-44a8-905f-f4dccf527b94"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{OrderCount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="310" y="0" width="100" height="18" uuid="f9140e71-2bec-4065-9350-b1d2f43385c5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1deecb23-3b69-4f23-ad64-0bd725412c12"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TotalRevenue}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="460" y="0" width="100" height="18" uuid="522c4bed-0161-4eed-9145-bc47e623f540">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d05d04a7-edb7-4c82-b291-6f4963f84811"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{AvgOrderValue}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

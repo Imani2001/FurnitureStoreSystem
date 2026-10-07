@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="375465c6-121a-41d9-9b15-2b3252e78484">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FurnitureStore"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT 
+    c.CustomerID,
+    CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
+    c.Phone,
+    c.City,
+    COUNT(so.OrderID) AS OrderCount,
+    IFNULL(SUM(so.TotalAmount), 0) AS TotalSpent
+FROM Customer c
+LEFT JOIN SalesOrder so ON c.CustomerID = so.CustomerID
+GROUP BY c.CustomerID, c.FirstName, c.LastName, c.Phone, c.City
+ORDER BY TotalSpent DESC]]>
+	</queryString>
+	<field name="CustomerID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="CustomerID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CustomerName"/>
+	</field>
+	<field name="Phone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="City" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="City"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="OrderCount" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="OrderCount"/>
+	</field>
+	<field name="TotalSpent" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TotalSpent"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="595" height="30" uuid="3f66817b-14b8-4ba1-a6d0-9e67c490b4b4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Order History]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="100" height="30" uuid="4dfde11a-9d90-41fe-972e-8d9e2b486ae2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="100" height="30" uuid="00fd72b4-f577-4e94-9410-9e9156e1094c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="100" height="30" uuid="5df5185e-0440-43bb-bd81-9870cb17bd24"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[City]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="100" height="30" uuid="15c93e24-e02f-4c01-8b6a-6b947d06c262"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orders]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="100" height="30" uuid="3d529ca8-c532-4ba1-8e45-9688323fef17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Spent]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="-10" y="0" width="100" height="18" uuid="abeb0daa-8d6c-4ff3-a1ba-51f911340d16">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fbe225a2-f665-42bc-be70-4d599243c989"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="100" height="18" uuid="7ba654ca-9898-4f73-a2f7-61e191630a2a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="35744970-fec0-45d3-9308-46d8c4784439"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="100" height="18" uuid="53e4229d-a483-4541-945a-7efd0099907d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9705623d-da1d-424c-a74d-943144740a51"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{City}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="18" uuid="43e99f16-b2b8-4e8a-9a49-67c69d9b5e3e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c00db7a1-278a-460b-a2a7-45a68fadbda5"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OrderCount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="470" y="0" width="100" height="18" uuid="c95c67df-6bf2-41df-b039-859aa00f662b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="784369c9-092c-418c-b734-bdc671205d60"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TotalSpent}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
